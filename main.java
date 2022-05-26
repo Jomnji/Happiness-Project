@@ -32,18 +32,24 @@ public class main {
 		
 		System.out.println("Pleasure to meet you " + name + ". On a scale of 0-100, what are your pleasant levels today?");
 		
-		int vars = 0; 
+		boolean vars = false; 
 		int pleasant = sc.nextInt();
-		
-		if (pleasant <= 50 & pleasant >= 0) {
-			System.out.println("I'm sorry to hear that, let's try to improve that");
-		}
-		else if (pleasant >= 50 & pleasant <= 100) {
-			System.out.println("That's great to hear!");
-		}
-		while (vars == 0) {
-			System.out.println("That is an invalid number, please input a number between 0 - 100");
-			pleasant = sc.nextInt();
+
+		while (vars == false) {
+			
+			if (pleasant <= 50 & pleasant >= 0) {
+				System.out.println("I'm sorry to hear that, let's try to improve that");
+				vars = true; 
+			}
+			else if (pleasant >= 50 & pleasant <= 100) {
+				System.out.println("That's great to hear!");
+				vars = true;
+			}
+			else { 
+				System.out.println("That is an invalid number, please input a number between 0 - 100");
+				pleasant = sc.nextInt();
+			}
+			
 		}
 
 	}
