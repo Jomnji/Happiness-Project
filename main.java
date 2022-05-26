@@ -31,7 +31,8 @@ public class main {
 		String name = sc.nextLine();
 		
 		System.out.println("Pleasure to meet you " + name + ". On a scale of 0-100, what are your pleasant levels today?");
-
+		
+		int vars = 0; 
 		int pleasant = sc.nextInt();
 		
 		if (pleasant <= 50 & pleasant >= 0) {
@@ -40,10 +41,9 @@ public class main {
 		else if (pleasant >= 50 & pleasant <= 100) {
 			System.out.println("That's great to hear!");
 		}
-		else {
-			System.out.println("That is an invalid number, please input a number between ");
-
-			int pleasant = sc.nextInt();
+		while (vars == 0) {
+			System.out.println("That is an invalid number, please input a number between 0 - 100");
+			pleasant = sc.nextInt();
 		}
 
 	}
