@@ -47,24 +47,26 @@ public class main {
 		// TODO Auto-generated method stub
 		//introduction();
 		
-		
+		System.out.println(27/4);
 		
 		
 		for(int i = 0; i < 7; i++) {   
 			sleepTime.add(7-i); 
 		}
+				
+		System.out.println(sleepTime);
 		
-		ArrayList sleepTimeCopy = (ArrayList)sleepTime.clone();
+		removeTest(sleepTime); 
 		
-		System.out.println(sleepTimeCopy);
-		
-		Collections.sort(sleepTimeCopy); 
-		
-		System.out.println(sleepTimeCopy);
+		System.out.println(sleepTime);
 		
 	}
 		
+	public static void removeTest(ArrayList<Integer> a) {
+		a.remove(1);
+		a.remove(2);
 		
+	}
 		
 	public static void introduction() {
 		boolean ready = false; 
@@ -336,22 +338,75 @@ public class main {
 			pleasantRelax.add(value);
 		}
 	}	
-	public static void compile() {
+	
+	public static void outlier(ArrayList<Integer> time, ArrayList<Integer> pleasant, ArrayList<Integer> energy) {
+		//take out outlier 
+		int quartile = time.get((time.size()/4));
+		int thirdQuartile = time.get(time.size()-(time.size()/4));
+		int IQR = thirdQuartile - quartile;
+		double max = thirdQuartile+1.5*IQR;
+		double min = quartile-1.5*IQR;
+		
+		for (int i = 0; i < time.size(); i++) {
+			if (time.get(i) > max || time.get(i) < min) {
+				time.remove(i);
+				pleasant.remove(i);
+				energy.remove(i);
+				i--;
+			}
+		}
+	}
+	//determine ideal
+	public static double ideal(ArrayList<Integer> time, ArrayList<Integer> value) {
+		//take out outlier 
+		double valueSum = 0;
+		double ideal = 0;
+		for (int i = 0; i < value.size(); i++) {
+			valueSum += value.get(i);
+		}
+		for (int i = 0; i < value.size(); i++) {
+			ideal += (value.get(i) / valueSum)*time.get(i);
+		}
+		return ideal;
+	}	
+		
+	public static void compile(ArrayList<Integer> a, ArrayList<Integer> b, ArrayList<Integer> c, String x, String y, String z) {
+		outlier(a, b, c);
+		double ideal = ideal(a, b);
+		String idealString = String.valueOf(ideal);
+		System.out.println("The ideal time for " + x + " in order to acheive a high " + y + " is " + idealString + " minutes");
+		
+	}
+	
+	
+
+	
+	/*
+	public static void ideal() {
 		//make a sorted copy
+		
 		ArrayList sleepTimeCopy = (ArrayList)sleepTime.clone();
 				
 		Collections.sort(sleepTimeCopy); 
 		
 		
-		//take out outliar 
-		for (int i = 0; i = sleepTimeCopy.size()
+		//take out outlier 
+		int quartile = sleepTimeCopy.get((sleepTimeCopy.size()/4));
+		int thirdQuartile = sleepTimeCopy.get(sleepTime.size()-(sleepTimeCopy.size()/4));
+		int IQR = thirdQuartile - quartile;
+		int max = thirdQuartile + 1.5*IQR;
+		int min = quartile - 1.5*IQR;
+		
+		for (int i = 0; i < sleepTimeCopy.size(); i++) {
+			if (sleepTimeCopy.get(i) > max || sleepTimeCopy.get(i) < min) {
+				sleepTimeCopy.remove(i);
+				i--;
+			}
+		}
+		
 		
 	}
-	
-	
-	
-	
-	
+	*/
 	
 	
 	
