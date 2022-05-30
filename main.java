@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.*;
+import java.util.Random;
 
 
 import java.util.Scanner;
@@ -30,8 +31,6 @@ public class main {
 	static ArrayList<Integer> pleasantRelax = new ArrayList<Integer>();
 	
 
-	
-	
 	static int sumOfTimes = 0; 
 	
 	//happiness variables
@@ -41,27 +40,51 @@ public class main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//introduction();
+		fill(sleepTime, 300, 600);
+		fill(energySleep, 20, 85);
+		fill(pleasantSleep, 60, 80);
 		
-		System.out.println(27/4);
+		fill(workTime, 20, 200);
+		fill(energyWork, 20, 85);
+		fill(pleasantWork, 20, 80);
 		
+		fill(exerciseTime, 20, 200);
+		fill(energyExercise, 10, 100);
+		fill(pleasantExercise, 20, 80);
 		
-		for(int i = 0; i < 7; i++) {   
-			sleepTime.add(7-i); 
-		}
-				
-		System.out.println(sleepTime);
+		fill(socialTime, 20, 200);
+		fill(energySocial, 20, 85);
+		fill(pleasantSocial, 35, 100);
 		
-		removeTest(sleepTime); 
+		fill(relaxTime, 20, 200);
+		fill(energyRelax, 20, 85);
+		fill(pleasantRelax, 20, 100);
+		introduction();
 		
-		System.out.println(sleepTime);
-		
+		System.out.println("sleepTime:" + sleepTime);
+		System.out.println("energySleep:" + energySleep);
+		System.out.println("pleasantSleep:" + pleasantSleep);
+		System.out.println("workTime:" + workTime);
+		System.out.println("energyWork:" + energyWork);
+		System.out.println("pleasantWork:" + pleasantWork);
+		System.out.println("exerciseTime:" + exerciseTime);
+		System.out.println("energyExercise:" + energyExercise);
+		System.out.println("pleasantExercise:" + pleasantExercise);
+		System.out.println("socialTime:" + socialTime);
+		System.out.println("energySocial:" + energySocial);
+		System.out.println("pleasantSocial:" + pleasantSocial);
+		System.out.println("relaxTime:" + relaxTime);
+		System.out.println("energyRelax:" + energyRelax);
+		System.out.println("pleasantRelax:" + pleasantRelax);
+
 	}
 		
-	public static void removeTest(ArrayList<Integer> a) {
-		a.remove(1);
-		a.remove(2);
-		
+	public static void fill(ArrayList<Integer> a, int min, int max) {
+		Random rand = new Random();
+		for (int i = 0; i < 7; i++) {
+		    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+			a.add(rand.nextInt(max));
+		}
 	}
 		
 	public static void introduction() {
@@ -93,6 +116,7 @@ public class main {
 						askTimes();
 					}
 					else if (desire.equals("c")) {
+						
 						iOrC = false;
 						outlier(sleepTime, pleasantSleep, energySleep);
 						outlier(workTime, pleasantWork, energyWork);
@@ -101,8 +125,19 @@ public class main {
 						outlier(relaxTime, pleasantRelax, energyRelax);
 
 
-						System.out.println("Here are the ideal durations (in mins) for all the activities to attain maximum pleasantness:\r\n");
-						compile()
+						System.out.println("Here are the ideal durations (in mins) for all the activities to attain maximum PLEASANTNESS:\r\n");
+						compile(sleepTime, pleasantSleep, "sleeping");
+						compile(workTime, pleasantWork, "working");
+						compile(exerciseTime, pleasantExercise, "exercising");
+						compile(socialTime, pleasantSocial, "socializing");
+						compile(relaxTime, pleasantRelax, "relaxing");
+						
+						System.out.println("Here are the ideal durations (in mins) for all the activities to attain maximum ENERGY:\r\n");
+						compile(sleepTime, energySleep, "sleeping");
+						compile(workTime, energyWork, "working");
+						compile(exerciseTime, energyExercise, "exercising");
+						compile(socialTime, energySocial, "socializing");
+						compile(relaxTime, energyRelax, "relaxing");
 					}
 					else {
 						System.out.println ("Please type either i to enter a new input of activity or c to compile the results");
