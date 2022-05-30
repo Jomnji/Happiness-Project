@@ -9,11 +9,7 @@ public class main {
 	//declare all variables used to determine overall happiness 
 
 	
-	static ArrayList<Integer> sleepTime = new ArrayList<Integer>();
-	
-	
-	
-	
+	static ArrayList<Integer> sleepTime = new ArrayList<Integer>();	
 	static ArrayList<Integer> energySleep = new ArrayList<Integer>();
 	static ArrayList<Integer> pleasantSleep = new ArrayList<Integer>();
 	
@@ -98,7 +94,15 @@ public class main {
 					}
 					else if (desire.equals("c")) {
 						iOrC = false;
-						System.out.println("FAKE RESULTS");
+						outlier(sleepTime, pleasantSleep, energySleep);
+						outlier(workTime, pleasantWork, energyWork);
+						outlier(exerciseTime, pleasantExercise, energyExercise);
+						outlier(socialTime, pleasantSocial, energySocial);
+						outlier(relaxTime, pleasantRelax, energyRelax);
+
+
+						System.out.println("Here are the ideal durations (in mins) for all the activities to attain maximum pleasantness:\r\n");
+						compile()
 					}
 					else {
 						System.out.println ("Please type either i to enter a new input of activity or c to compile the results");
@@ -370,11 +374,10 @@ public class main {
 		return ideal;
 	}	
 		
-	public static void compile(ArrayList<Integer> a, ArrayList<Integer> b, ArrayList<Integer> c, String x, String y, String z) {
-		outlier(a, b, c);
-		double ideal = ideal(a, b);
+	public static void compile(ArrayList<Integer> time, ArrayList<Integer> value, String action) {
+		double ideal = ideal(time, value);
 		String idealString = String.valueOf(ideal);
-		System.out.println("The ideal time for " + x + " in order to acheive a high " + y + " is " + idealString + " minutes");
+		System.out.println("Ideal duration of " + action + ":" + idealString + " minutes");
 		
 	}
 	
