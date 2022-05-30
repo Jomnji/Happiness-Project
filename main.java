@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.*;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 import java.util.Scanner;
@@ -40,50 +41,60 @@ public class main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		fill(sleepTime, 300, 600);
-		fill(energySleep, 20, 85);
-		fill(pleasantSleep, 60, 80);
+
+		fill(sleepTime, 300, 400, 480, 600, 660, 720);
+		fill(energySleep, 20, 30, 50, 60, 40, 50);
+		fill(pleasantSleep, 40, 50, 70, 80, 60, 70);
 		
-		fill(workTime, 20, 200);
-		fill(energyWork, 20, 85);
-		fill(pleasantWork, 20, 80);
+		fill(workTime, 20, 30, 50, 60, 10, 20);
+		fill(energyWork, 70, 85, 44, 55, 60, 70);
+		fill(pleasantWork, 40, 50, 60, 80, 20, 30);
 		
-		fill(exerciseTime, 20, 200);
-		fill(energyExercise, 10, 100);
-		fill(pleasantExercise, 20, 80);
+		fill(exerciseTime, 20, 25, 35, 50, 60, 72);
+		fill(energyExercise, 50, 60, 80, 90, 10, 30);
+		fill(pleasantExercise, 40, 50, 60, 70, 30, 40);
 		
-		fill(socialTime, 20, 200);
-		fill(energySocial, 20, 85);
-		fill(pleasantSocial, 35, 100);
+		fill(relaxTime, 10, 20, 25, 35, 40, 60);
+		fill(energyRelax, 40, 50, 50, 60, 60, 70);
+		fill(pleasantRelax, 60, 70, 70, 80, 45, 50);
 		
-		fill(relaxTime, 20, 200);
-		fill(energyRelax, 20, 85);
-		fill(pleasantRelax, 20, 100);
+		fill(socialTime, 10, 20, 25, 35, 45, 70);
+		fill(energySocial, 60, 65, 70, 80, 20, 30);
+		fill(pleasantSocial, 45, 55, 55, 80, 20, 30);
 		introduction();
 		
-		System.out.println("sleepTime:" + sleepTime);
+		
+		System.out.println("\nSleep:\nsleepTime:" + sleepTime);
 		System.out.println("energySleep:" + energySleep);
 		System.out.println("pleasantSleep:" + pleasantSleep);
-		System.out.println("workTime:" + workTime);
+		System.out.println("\nWork:\nworkTime:" + workTime);
 		System.out.println("energyWork:" + energyWork);
 		System.out.println("pleasantWork:" + pleasantWork);
-		System.out.println("exerciseTime:" + exerciseTime);
+		System.out.println("\nExercise:\nexerciseTime:" + exerciseTime);
 		System.out.println("energyExercise:" + energyExercise);
 		System.out.println("pleasantExercise:" + pleasantExercise);
-		System.out.println("socialTime:" + socialTime);
+		System.out.println("\nSocial:\nsocialTime:" + socialTime);
 		System.out.println("energySocial:" + energySocial);
 		System.out.println("pleasantSocial:" + pleasantSocial);
-		System.out.println("relaxTime:" + relaxTime);
+		System.out.println("\nRelax:\nrelaxTime:" + relaxTime);
 		System.out.println("energyRelax:" + energyRelax);
 		System.out.println("pleasantRelax:" + pleasantRelax);
-
+	
 	}
 		
-	public static void fill(ArrayList<Integer> a, int min, int max) {
+	public static void fill(ArrayList<Integer> a, int min1, int max1, int min2, int max2, int min3, int max3) {
 		Random rand = new Random();
-		for (int i = 0; i < 7; i++) {
-		    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-			a.add(rand.nextInt(max));
+		for (int i = 0; i < 30; i++) {
+			int random_int = ThreadLocalRandom.current().nextInt(min1, max1 + 1);
+			a.add(random_int);
+		}
+		for (int i = 0; i < 40; i++) {
+			int random_int = ThreadLocalRandom.current().nextInt(min2, max2 + 1);
+			a.add(random_int);
+		}
+		for (int i = 0; i < 50; i++) {
+			int random_int = ThreadLocalRandom.current().nextInt(min3, max3 + 1);
+			a.add(random_int);
 		}
 	}
 		
@@ -94,17 +105,17 @@ public class main {
 		System.out.println("Hello, I am Baymax: Your personal Happiness Bot. Before we begin, what is your name?");
 		String name = sc.nextLine();
 		
-		System.out.print("Pleasure to meet you " + name + ". Here are the Instructions:\n\tPlease document your time of each activity as well as your energy and pleasantness level out of 100 after the activity has been completed and input into the program. Daily activities can be categorized into exercise, sleep, social, relax, and work. \r\n" + 
+		System.out.println("Pleasure to meet you " + name + ". Here are the Instructions:\n\tPlease document your time of each activity as well as your energy and pleasantness level out of 100 after the activity has been completed and input into the program. Daily activities can be categorized into exercise, sleep, social, relax, and work. \r\n" + 
 				"\tClarifications for activities:\r\n" + 
 				"\tExercise - any physical activity or recreations\r\n" + 
 				"\tSleep - night time sleep, rather than nap time\r\n" + 
 				"\tSocial - time spent socializing and hanging out with friends or other people\r\n" + 
 				"\tRelax - self-care time, such as gaming, reading, etc. \r\n" + 
-				"Work - time spent doing schoolwork, homework, etc :)\nType 'ready' when you are ready.");
+				"\tWork - time spent doing schoolwork, homework, etc :)\n\nType 'ready' when you are ready. ");
 		String yesOrNo = sc.nextLine();
 		while (ready == false) {
 			if (yesOrNo.equals("ready")) {
-				System.out.println("Great, lets begin!");
+				System.out.println("Great, lets begin! \n");
 				ready = true;
 				askTimes();
 				//start next function that begins asking for times
@@ -132,7 +143,7 @@ public class main {
 						compile(socialTime, pleasantSocial, "socializing");
 						compile(relaxTime, pleasantRelax, "relaxing");
 						
-						System.out.println("Here are the ideal durations (in mins) for all the activities to attain maximum ENERGY:\r\n");
+						System.out.println("\nHere are the ideal durations (in mins) for all the activities to attain maximum ENERGY:\r\n");
 						compile(sleepTime, energySleep, "sleeping");
 						compile(workTime, energyWork, "working");
 						compile(exerciseTime, energyExercise, "exercising");
@@ -319,14 +330,14 @@ public class main {
 		
 		while (vars2 == false) {
 			
-			if (energyLevel <= 50 & energyLevel >= 0) {
+			if (energyLevel < 40 & energyLevel >= 0) {
 				System.out.println("Okay, let's see why that is.");
 				vars2 = true;
 				energyChooseList(activity, energyLevel);
 			}
 			else if (energyLevel >= 40 & energyLevel < 70) {
 				System.out.println("Great, let's determine why that is");
-				vars = true;
+				vars2 = true;
 				energyChooseList(activity, energyLevel);
 			}
 			else if (energyLevel >= 70 & energyLevel <= 100) {
@@ -378,17 +389,23 @@ public class main {
 		}
 	}	
 	
-	public static void outlier(ArrayList<Integer> time, ArrayList<Integer> pleasant, ArrayList<Integer> energy) {
+	public static void outlier(ArrayList<Integer> realTime, ArrayList<Integer> pleasant, ArrayList<Integer> energy) {
 		//take out outlier 
+		ArrayList<Integer> time = new ArrayList<>(realTime.size());
+		for (int i = 0; i < realTime.size(); i++) {	
+			time.add(realTime.get(i));
+		}
+		Collections.sort(time);
+		
 		int quartile = time.get((time.size()/4));
 		int thirdQuartile = time.get(time.size()-(time.size()/4));
 		int IQR = thirdQuartile - quartile;
-		double max = thirdQuartile+1.5*IQR;
-		double min = quartile-1.5*IQR;
+		double max = thirdQuartile+(1.5*IQR);
+		double min = quartile-(1.5*IQR);
 		
-		for (int i = 0; i < time.size(); i++) {
-			if (time.get(i) > max || time.get(i) < min) {
-				time.remove(i);
+		for (int i = 0; i < realTime.size(); i++) {
+			if (realTime.get(i) > max || realTime.get(i) < min) {
+				realTime.remove(i);
 				pleasant.remove(i);
 				energy.remove(i);
 				i--;
@@ -403,16 +420,21 @@ public class main {
 		for (int i = 0; i < value.size(); i++) {
 			valueSum += value.get(i);
 		}
-		for (int i = 0; i < value.size(); i++) {
-			ideal += (value.get(i) / valueSum)*time.get(i);
+		for (int b = 0; b < value.size(); b++) {
+			if (value.size() != time.size()) {
+				System.out.println("Different SIZE");
+			}
+			ideal += (value.get(b) / valueSum)*time.get(b);
 		}
 		return ideal;
 	}	
 		
 	public static void compile(ArrayList<Integer> time, ArrayList<Integer> value, String action) {
 		double ideal = ideal(time, value);
-		String idealString = String.valueOf(ideal);
-		System.out.println("Ideal duration of " + action + ":" + idealString + " minutes");
+		double roundIdeal = Math.round(ideal*100.0)/100.0;
+		
+		String idealString = String.valueOf(roundIdeal);
+		System.out.println("Ideal duration of " + action + ": " + idealString + " minutes");
 		
 	}
 	
