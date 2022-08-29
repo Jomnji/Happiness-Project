@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class main {
 	
 	//declare all variables used to determine overall happiness 
-
-	
 	static ArrayList<Integer> sleepTime = new ArrayList<Integer>();	
 	static ArrayList<Integer> energySleep = new ArrayList<Integer>();
 	static ArrayList<Integer> pleasantSleep = new ArrayList<Integer>();
@@ -37,28 +35,26 @@ public class main {
 	//happiness variables
 	static String name = ""; 
 	
-	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		fill(sleepTime, 300, 400, 480, 600, 660, 720);
+		fill(sleepTime, 300, 500, 400, 700, 500, 700);
 		fill(energySleep, 20, 30, 50, 60, 40, 50);
 		fill(pleasantSleep, 40, 50, 70, 80, 60, 70);
 		
-		fill(workTime, 20, 30, 50, 60, 10, 20);
+		fill(workTime, 20, 50, 30, 60, 10, 40);
 		fill(energyWork, 70, 85, 44, 55, 60, 70);
 		fill(pleasantWork, 40, 50, 60, 80, 20, 30);
 		
-		fill(exerciseTime, 20, 25, 35, 50, 60, 72);
+		fill(exerciseTime, 20, 40, 30, 50, 30, 72);
 		fill(energyExercise, 50, 60, 80, 90, 10, 30);
 		fill(pleasantExercise, 40, 50, 60, 70, 30, 40);
 		
-		fill(relaxTime, 10, 20, 25, 35, 40, 60);
+		fill(relaxTime, 10, 40, 15, 35, 30, 60);
 		fill(energyRelax, 40, 50, 50, 60, 60, 70);
 		fill(pleasantRelax, 60, 70, 70, 80, 45, 50);
 		
-		fill(socialTime, 10, 20, 25, 35, 45, 70);
+		fill(socialTime, 10, 40, 15, 35, 35, 70);
 		fill(energySocial, 60, 65, 70, 80, 20, 30);
 		fill(pleasantSocial, 45, 55, 55, 80, 20, 30);
 		introduction();
@@ -105,13 +101,13 @@ public class main {
 		System.out.println("Hello, I am Baymax: Your personal Happiness Bot. Before we begin, what is your name?");
 		String name = sc.nextLine();
 		
-		System.out.println("Pleasure to meet you " + name + ". Here are the Instructions:\n\tPlease document your time of each activity as well as your energy and pleasantness level out of 100 after the activity has been completed and input into the program. Daily activities can be categorized into exercise, sleep, social, relax, and work. \r\n" + 
-				"\tClarifications for activities:\r\n" + 
+		System.out.println("Pleasure to meet you " + name + ". Here are the Instructions:\n\nPlease document your time IN MINS of each activity as well as your energy and pleasantness levels out of 100 after the activity has been completed and input into the program.\nDaily activities can be categorized into exercise, sleep, social, relax, and work. \r\n" + 
+				"\n\tClarifications for activities:\r\n" + 
 				"\tExercise - any physical activity or recreations\r\n" + 
 				"\tSleep - night time sleep, rather than nap time\r\n" + 
 				"\tSocial - time spent socializing and hanging out with friends or other people\r\n" + 
 				"\tRelax - self-care time, such as gaming, reading, etc. \r\n" + 
-				"\tWork - time spent doing schoolwork, homework, etc :)\n\nType 'ready' when you are ready. ");
+				"\tWork - time spent doing schoolwork, homework, etc not including school or work itself :)\n\nType 'ready' when you are ready. ");
 		String yesOrNo = sc.nextLine();
 		while (ready == false) {
 			if (yesOrNo.equals("ready")) {
@@ -215,7 +211,7 @@ public class main {
 
 				}
 				else { 
-					System.out.println("That is an invalid number, please input a number between 0 - 100");
+					System.out.println("That is an invalid number, please input a number between 0 - 1440");
 					timeOfWork = sc.nextInt();
 				}			
 			}
@@ -237,7 +233,7 @@ public class main {
 
 				}
 				else { 
-					System.out.println("That is an invalid number, please input a number between 0 - 100");
+					System.out.println("That is an invalid number, please input a number between 0 - 1440");
 					timeOfExercise = sc.nextInt();
 				}			
 			}			
@@ -260,7 +256,7 @@ public class main {
 
 				}
 				else { 
-					System.out.println("That is an invalid number, please input a number between 0 - 100");
+					System.out.println("That is an invalid number, please input a number between 0 - 1440");
 					timeOfSocial = sc.nextInt();
 				}			
 			}			
@@ -282,7 +278,7 @@ public class main {
 
 				}
 				else { 
-					System.out.println("That is an invalid number, please input a number between 0 - 100");
+					System.out.println("That is an invalid number, please input a number between 0 - 1440");
 					timeOfRelax = sc.nextInt();
 				}			
 			}			
@@ -437,37 +433,6 @@ public class main {
 		System.out.println("Ideal duration of " + action + ": " + idealString + " minutes");
 		
 	}
-	
-	
-
-	
-	/*
-	public static void ideal() {
-		//make a sorted copy
-		
-		ArrayList sleepTimeCopy = (ArrayList)sleepTime.clone();
-				
-		Collections.sort(sleepTimeCopy); 
-		
-		
-		//take out outlier 
-		int quartile = sleepTimeCopy.get((sleepTimeCopy.size()/4));
-		int thirdQuartile = sleepTimeCopy.get(sleepTime.size()-(sleepTimeCopy.size()/4));
-		int IQR = thirdQuartile - quartile;
-		int max = thirdQuartile + 1.5*IQR;
-		int min = quartile - 1.5*IQR;
-		
-		for (int i = 0; i < sleepTimeCopy.size(); i++) {
-			if (sleepTimeCopy.get(i) > max || sleepTimeCopy.get(i) < min) {
-				sleepTimeCopy.remove(i);
-				i--;
-			}
-		}
-		
-		
-	}
-	*/
-	
 	
 	
 }
